@@ -1,19 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Changing Colours</title>
     <style>
 
     </style>
 </head>
+
 <body>
+
+    <section>
+        <h2>Background Colour<span id="box-colour"></span></h2>
+
+        <button id="btn-change-colour">Click Me</button>
+
+    </section>
 
     <script>
 
+        const btnChangeColour = document.getElementById('btn-change-colour');
+        const boxColour = document.getElementById('box-colour');
+
+        btnChangeColour.addEventListener('click', () => {
+
+            const arrColours = [0,1,2,3,4,5,6,7,8,9,'A','B','C','D','E','F'];
+            let strHexColour = '#';
+            for (let i = 0; i < 6; i++) {
+                const randomIndex = getRandomNumber(arrColours.length);
+                strHexColour += arrColours[randomIndex];
+            }
+            document.body.style.backgroundColor = strHexColour;
+            boxColour.textContent = `: ${strHexColour}`;
+
+        });
+
+        // Generate random number in range from 0 to max-1
+        function getRandomNumber(max) {
+            return Math.floor(Math.random() * max);
+        }
+
 
     </script>
-    
+
 </body>
+
 </html>
