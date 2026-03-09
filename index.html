@@ -5,35 +5,101 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Changing Colours</title>
-    <style>
 
+    <style>
+        /* Centrado total de la página */
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #6C07C2;
+            /* Color inicial */
+        }
+
+        #bigSection {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            gap: 30px;
+            /* Espacio entre la caja negra y el botón */
+        }
+
+        /* La caja negra del título */
+        .container-text {
+            background-color: #000;
+            padding: 20px 40px;
+            color: white;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .container-text h2 {
+            margin: 0;
+            font-size: 2rem;
+        }
+
+        /* El resaltado verde del código hex */
+        #box-colour {
+            background-color: #008000;
+            padding: 5px 15px;
+            margin-left: 10px;
+        }
+
+        /* El botón azul redondeado */
+        #btn-change-colour {
+            background-color: #0000FF;
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border-radius: 50px;
+            /* Lo hace totalmente redondeado */
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        #btn-change-colour:hover {
+            background-color: #0000CC;
+            transform: scale(1.05);
+        }
     </style>
 </head>
 
 <body>
 
-    <section>
-        <h2>Background Colour<span id="box-colour"></span></h2>
+    <section id="bigSection">
+        <div class="container-text">
+            <h2>Background Colour<span id="box-colour">#6C07C2</span></h2>
+        </div>
 
-        <button id="btn-change-colour">Click Me</button>
+        <button id="btn-change-colour"><span class="icon">🎨</span> Click Me</button>
 
     </section>
+
+
 
     <script>
 
         const btnChangeColour = document.getElementById('btn-change-colour');
         const boxColour = document.getElementById('box-colour');
+        const bigSection = document.getElementById('bigSection');
+
 
         btnChangeColour.addEventListener('click', () => {
-
-            const arrColours = [0,1,2,3,4,5,6,7,8,9,'A','B','C','D','E','F'];
             let strHexColour = '#';
+            const arrHex = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'A', 'B', 'C', 'D', 'E', 'F'];
             for (let i = 0; i < 6; i++) {
-                const randomIndex = getRandomNumber(arrColours.length);
-                strHexColour += arrColours[randomIndex];
+                strHexColour += arrHex[getRandomNumber(arrHex.length)];
             }
-            document.body.style.backgroundColor = strHexColour;
-            boxColour.textContent = `: ${strHexColour}`;
+            boxColour.innerHTML = `: ${strHexColour}`;
+            bigSection.style.backgroundColor = strHexColour;
 
         });
 
